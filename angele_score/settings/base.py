@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "angele_score.commonmiddle.CommonMiddleware"
 ]
 
 ROOT_URLCONF = 'angele_score.urls'
