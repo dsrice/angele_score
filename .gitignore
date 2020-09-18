@@ -5,3 +5,5 @@ bowring/__pycache__/
 logs/
 bowring/migrations/__pycache__/
 core/__pycache__/
+bowring/forms/__pycache__/
+bowring/views/__pycache__/

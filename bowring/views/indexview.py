@@ -4,6 +4,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def index(request):
-    context = {}
-    return render(request, "bowring/index.html")
+class Index():
+    def index(request):
+        context = {}
+        return render(request, "bowring/login.html")
