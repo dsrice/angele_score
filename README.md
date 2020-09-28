@@ -8,3 +8,4 @@ pip install mysqlclient　<br>
 pip install mysql-connector-python　<br>
 pip install djangorestframework-jwt　<br>
 pip install django-cors-headers　<br>
+pip install django-widget-tweaks <br>

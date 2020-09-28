@@ -4,7 +4,23 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4 offset-sm-4">
-            <image src="{% static "images/angeleyes.png" %}" ></image>
+        <image src="{% static "images/angeleyes.png" %}" ></image>
+            <form method='post' action=''  class="form-horizontal">
+                {% csrf_token %}
+                {% load widget_tweaks %}
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">{{form.loginid.label}}:</label>
+                    {{form.loginid|add_class:"form-control"}}
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">{{form.password.label}}:</label>
+                    {{form.password|add_class:"form-control"}}
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">ログイン</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
