@@ -5,5 +5,5 @@ class LoginForm(forms.Form):
     """
     ログイン画面
     """
-    loginid = forms.CharField(label="ユーザ名")
+    email = forms.EmailField(label="メールアドレス")
     password = forms.CharField(label="パスワード", widget=forms.PasswordInput)
