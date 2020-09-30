@@ -11,6 +11,6 @@ def index(request):
         user = authenticate(email=form.data["email"], password=form.data["password"])
         if user:
             login(request, user)
-            return redirect("home")
+            return redirect("bowring:home")
 
-    return render(request, 'bowring/login.html', {'form': form })
+    return render(request, 'login/index.html', {'form': form})

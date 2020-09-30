@@ -9,4 +9,4 @@ from django.contrib.auth import login, authenticate
 def get(request):
     print(request.user)
     form = HomeForm()
-    return render(request, 'bowring/home.html', {'form': form })
+    return render(request, 'home/index.html', {'form': form})
