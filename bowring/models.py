@@ -58,3 +58,81 @@ class User(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
     def get_short_name(self):
         return self.first_name
 
+
+class Event(TimeStampedModel):
+    """
+    イベント情報
+    """
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    event_date = models.DateTimeField()
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = "events"
+
+
+class Result(TimeStampedModel):
+    """
+    スコア概要情報
+    """
+    event = models.ForeignKey(Event, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    total_score = models.IntegerField()
+    base_score = models.IntegerField()
+    total_handicap = models.IntegerField()
+
+    class Meta:
+        db_table = "results"
+
+
+class GameScore(TimeStampedModel):
+    """
+    ゲームスコア情報
+    """
+    result = models.ForeignKey(Result, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    game_count = models.IntegerField()
+    score = models.IntegerField()
+    base_score = models.IntegerField()
+    handicap = models.IntegerField()
+
+    class Meta:
+        db_table = "game_scores"
+
+
+class FrameScore(TimeStampedModel):
+    """
+    フレームスコア情報
+    """
+    gamescore = models.ForeignKey(GameScore, on_delete=models.PROTECT)
+    result = models.ForeignKey(Result, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    frame_count = models.IntegerField()
+    frame_type = models.IntegerField()
+    frame_score = models.IntegerField()
+
+    class Meta:
+        db_table = "frame_scores"
+
+
+class FramePin(TimeStampedModel):
+    """
+    フレームピン情報
+    """
+    gamescore = models.ForeignKey(GameScore, on_delete=models.PROTECT)
+    result = models.ForeignKey(Result, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    framescore = models.ForeignKey(FrameScore, on_delete=models.PROTECT)
+    pin1 = models.BooleanField()
+    pin2 = models.BooleanField()
+    pin3 = models.BooleanField()
+    pin4 = models.BooleanField()
+    pin5 = models.BooleanField()
+    pin6 = models.BooleanField()
+    pin7 = models.BooleanField()
+    pin8 = models.BooleanField()
+    pin9 = models.BooleanField()
+    pin10 = models.BooleanField()
+
+    class Meta:
+        db_table = "frame_pins"
