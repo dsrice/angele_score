@@ -7,6 +7,5 @@ from django.contrib.auth import login, authenticate
 
 @login_required
 def get(request):
-    print(request.user)
     form = HomeForm()
     return render(request, 'home/index.html', {'form': form})
