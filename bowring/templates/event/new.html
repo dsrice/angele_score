@@ -5,7 +5,7 @@
     <h1>投球作成</h1>
 
     <div class="col-sm-12">
-        <form method="post" action="">
+        <form method="post" action="{% url "bowring:evnet_create" %}">
             {% csrf_token %}
 
             <table class="table">
@@ -26,6 +26,8 @@
                     </td>
                 </tr>
             </table>
+
+            <button type="submit" class="btn btn-primary">登録</button>
         </form>
     </div>
 

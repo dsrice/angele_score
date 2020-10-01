@@ -17,3 +17,12 @@ class TimeStampedModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+    def save(self, request=None, **kwargs):
+        if request.user.is_authenticated:
+            self.updated_user_id = request.user.id
+            if not self.created_at:
+                self.created_user_id = request.user.id
+
+        super(TimeStampedModel, self).save(**kwargs)
