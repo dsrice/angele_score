@@ -7,4 +7,4 @@ class NewForm(forms.Form):
     """
 
     name = forms.CharField()
-    event_date = forms.DateField(widget=DateTimePickerInput())
+    event_date = forms.DateField(widget=DateTimePickerInput(format="%Y-%m-%d"))

@@ -16,6 +16,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <script type="text/javascript" src="/static/bootstrap_datepicker_plus/js/datepicker-widget.js"></script>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
 <body>
     {% if request.user.is_authenticated %}
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
