@@ -1,5 +1,12 @@
 {% extends "home/../base.html" %}
 {% block title %}ホーム{% endblock %}
 {% block content1 %}
-<h1>Hello, test!</h1>
+
+    <h1>ホーム</h1>
+
+    <div class="col-sm-12">
+        <div class="float-right">
+            <a href="{%  url "bowring:evnet_new" %}" class="btn btn-primary">新規投球追加</a>
+        </div>
+    </div>
 {% endblock %}
