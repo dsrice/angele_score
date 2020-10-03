@@ -8,5 +8,22 @@
         <div class="float-right">
             <a href="{%  url "bowring:evnet_new" %}" class="btn btn-primary">新規投球追加</a>
         </div>
+
+        {% if form.events %}
+            <table class="table">
+                <tr class="thead-light">
+                    <th>イベント名</th>
+                    <th>実施日</th>
+                    <th></th>
+                </tr>
+                {% for event in form.events %}
+                    <tr>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.event_date |date:"Y-m-d"}}</td>
+                        <td><a href="{% url "bowring:evnet_show" event.id %}">詳細</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
     </div>
 {% endblock %}
