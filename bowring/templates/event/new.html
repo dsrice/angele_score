@@ -1,0 +1,35 @@
+{% extends "home/../base.html" %}
+{% block title %}投球作成{% endblock %}
+{% block content1 %}
+{% load widget_tweaks %}
+    <h1>投球作成</h1>
+
+    <div class="col-sm-12">
+        <form method="post" action="{% url "bowring:evnet_create" %}">
+            {% csrf_token %}
+
+            <table class="table">
+                <tr>
+                    <th>
+                        名称
+                    </th>
+                    <td>
+                       {{form.name|add_class:"form-control"}}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        実施日
+                    </th>
+                    <td>
+                       {{form.event_date|add_class:"form-control"}}
+                    </td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-primary">登録</button>
+        </form>
+    </div>
+
+
+{% endblock %}
