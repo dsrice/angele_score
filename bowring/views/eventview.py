@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 
 from bowring.forms.event.newform import NewForm
 from bowring.forms.event.showform import ShowForm
-from bowring.models import Event
+from bowring.models.events import Event
 
 @login_required
 def new(request):
@@ -21,6 +21,8 @@ def create(request):
         )
 
         event.save(request)
+
+
         return redirect("bowring:home")
 
     return render(request, "event/new.html", {"form": form})
