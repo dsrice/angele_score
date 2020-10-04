@@ -5,10 +5,12 @@ from bowring.forms.event.newform import NewForm
 from bowring.forms.event.showform import ShowForm
 from bowring.models.events import Event
 
+
 @login_required
 def new(request):
     form = NewForm()
     return render(request, 'event/new.html', {"form": form})
+
 
 def create(request):
     print(request.user)
@@ -22,7 +24,6 @@ def create(request):
 
         event.save(request)
 
-
         return redirect("bowring:home")
 
     return render(request, "event/new.html", {"form": form})
@@ -32,9 +33,10 @@ def show(request, event_id):
     form = ShowForm(event_id)
     return render(request, 'event/show.html', {"form": form})
 
+
 def edit(request, event_id):
     form = NewForm.edit(event_id)
-    return render(request, "event/edit.html",{"form": form})
+    return render(request, "event/edit.html", {"form": form})
 
 
 def update(request):
