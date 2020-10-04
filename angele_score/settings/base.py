@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "bowring",
     'widget_tweaks',
+    "bootstrap4",
+    "bootstrap_datepicker_plus",
 ]
 
 MIDDLEWARE = [
