@@ -1,0 +1,17 @@
+{% extends "home/../base.html" %}
+{% block title %}投球作成{% endblock %}
+{% block content1 %}
+{% load widget_tweaks %}
+    <h1>投球作成</h1>
+
+    <div class="col-sm-12">
+        <form method="post" action="{% url "bowring:evnet_update" %}">
+            {% csrf_token %}
+            {{ form.id.as_hidden }}
+            {% include  "event/__form.html" with form=form %}
+            <button type="submit" class="btn btn-primary">登録</button>
+        </form>
+    </div>
+
+
+{% endblock %}

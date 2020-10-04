@@ -9,5 +9,7 @@ urlpatterns = [
     path('event/new', eventview.new, name='evnet_new'),
     path('event/create', eventview.create, name='evnet_create'),
     path('event/<int:event_id>/show', eventview.show, name='evnet_show'),
+    path('event/<int:event_id>/edit', eventview.edit, name='evnet_edit'),
+    path('event/update', eventview.update, name='evnet_update'),
     path('logout', logoutview.index, name='logout'),
 ]

@@ -24,8 +24,12 @@
             </tr>
         </table>
 
-        <button type="submit" class="btn btn-primary">編集する</button>
+        <a href="{%  url "bowring:evnet_edit" form.event.id %}" class="btn btn-primary">編集する</a>
+
     </div>
 
+    <div class="col-sm-12">
+        <h3>スコア情報</h3>
+    </div>
 
 {% endblock %}

@@ -32,16 +32,20 @@ def show(request, event_id):
     form = ShowForm(event_id)
     return render(request, 'event/show.html', {"form": form})
 
-def update(request, event_id):
-    form = ShowForm(request.POST)
-    if form.is_valid():
-        event = Event(
-            name=form.data["name"],
-            event_date=form.data["event_date"],
-            user=request.user
-        )
+def edit(request, event_id):
+    form = NewForm.edit(event_id)
+    return render(request, "event/edit.html",{"form": form})
 
-        event.save(request)
-        return redirect("bowring:home")
+
+def update(request):
+    form = NewForm(request.POST)
+    if form.is_valid():
+        print(form.data)
+        event = Event.objects.get(id=form.data["id"])
+        if event and event.user == request.user:
+            event.name = form.data["name"]
+            event.event_date = form.data["event_date"]
+            event.save(request)
+            return redirect("bowring:evnet_show", event_id=event.id)
 
     return render(request, 'event/new.html', {"form": form})
