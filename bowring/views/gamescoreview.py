@@ -8,6 +8,5 @@ from bowring.models.events import Event
 
 @login_required
 def new(request):
-    form = NewForm()
-    return render(request, 'event/new.html', {"form": form})
+    return render(request, 'gamescore/new.html')
 
