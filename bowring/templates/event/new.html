@@ -7,25 +7,7 @@
     <div class="col-sm-12">
         <form method="post" action="{% url "bowring:evnet_create" %}">
             {% csrf_token %}
-
-            <table class="table">
-                <tr>
-                    <th>
-                        名称
-                    </th>
-                    <td>
-                       {{form.name|add_class:"form-control"}}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        実施日
-                    </th>
-                    <td>
-                       {{form.event_date|add_class:"form-control"}}
-                    </td>
-                </tr>
-            </table>
+            {% include  "event/__form.html" with form=form %}
 
             <button type="submit" class="btn btn-primary">登録</button>
         </form>
