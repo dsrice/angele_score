@@ -7,7 +7,9 @@ class APICoreCase(TestCase):
     def accesstest(self):
         user = User.objects.get(email="test@xxx.xx")
         api = Api_method()
-        api.auth(user)
+        token = api.auth(user)
+        print(token)
+
 
 case = APICoreCase()
 case.accesstest()

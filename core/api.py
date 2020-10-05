@@ -1,4 +1,5 @@
 from rest_framework.test import APIClient
+from rest_framework import status
 import environ
 
 env = environ.Env()
@@ -17,12 +18,15 @@ class Api_method:
         url = self.base_url + "v1/token/"
         data = {
             "email": user.email,
-            "password": user.password
+            "password": "test"
         }
-        print(url)
+        print(data)
         response = client.post(url, data)
-        print(response)
 
+        if response.status_code == status.HTTP_200_OK:
+            return "JWT " + response.data["token"]
+        else:
+            return None
 
 
     def get(self, url, token, params):
