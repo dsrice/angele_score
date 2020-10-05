@@ -1,5 +1,5 @@
 from django import forms
 
-class CommonForm(forms.Form):
-    username = forms.CharField()
 
+class CommonForm(forms.Form):
+    api_token = forms.CharField()
