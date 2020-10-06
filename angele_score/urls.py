@@ -19,6 +19,7 @@ from rest_framework_jwt.views import obtain_jwt_token, verify_jwt_token, refresh
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('bowring/', include('bowring.urls')),
+    path('v1/', include('v1.urls')),
     path("v1/token/", obtain_jwt_token),
     path("v1/token/verify/", verify_jwt_token),
     path("v1/token/refresh/", refresh_jwt_token)
