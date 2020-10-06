@@ -18,8 +18,10 @@ class Event(TimeStampedModel):
         db_table = "events"
 
     def check_event(event_id, user):
+        """
+        対象のイベントとユーザのセットが成立しているかの確認
+        """
         event = Event.objects.filter(id=event_id, user=user)
-        print(event)
         if event:
             return event[0]
         return None

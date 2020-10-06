@@ -11,7 +11,6 @@ class GameScoreView(APIView):
         try:
             event_id = request.GET.get("event_id")
             event = Event.check_event(event_id=event_id, user=request.user)
-            print(event)
             if not event:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
