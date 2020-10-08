@@ -1,5 +1,6 @@
 from .base import *
 import environ
+import datetime
 
 env = environ.Env()
 env.read_env('.env')
@@ -44,39 +45,51 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': 'logs/debug.log',
-            'when': 'D',
-            'interval': 1,
-            'formatter': 'verbose',
-          },
+        }
     },
     'loggers': {
         'django': {
-            'handlers': ['console', "file"],
+            'handlers': ['console',],
             'propagate': True,
         },
         'django.request': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
             'propagate': False,
         },
         'django.server': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
             'propagate': False,
         },
         'django.db.backends': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
             'propagate': False,
         },
         'main': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
         }
     }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+}
+
+JWT_AUTH = {
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256',
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=28),
 }

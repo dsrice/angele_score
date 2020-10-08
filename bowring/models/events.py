@@ -17,4 +17,11 @@ class Event(TimeStampedModel):
     class Meta:
         db_table = "events"
 
-
+    def check_event(event_id, user):
+        """
+        対象のイベントとユーザのセットが成立しているかの確認
+        """
+        event = Event.objects.filter(id=event_id, user=user)
+        if event:
+            return event[0]
+        return None
