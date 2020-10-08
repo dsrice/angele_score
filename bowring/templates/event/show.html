@@ -53,7 +53,7 @@
                             {{ game.score }}
                         </td>
                         <td>
-                            <a href="#" class="btn btn-primary">編集</a>
+                            <a href="{%  url "bowring:gamescore_edit" form.event.id game.game_count%}" class="btn btn-primary">編集</a>
                         </td>
                     </tr>
                 {% endfor %}

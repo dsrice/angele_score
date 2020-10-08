@@ -18,3 +18,12 @@ def new(request, event_id):
 
     return render(request, 'gamescore/new.html', {"form": form})
 
+def edit(request, event_id, game_count):
+
+    event = Event.check_event(event_id, request.user)
+    if not event:
+        return error.handler404(request)
+
+    form = NewForm()
+
+    return render(request, 'gamescore/edit.html', {"form": form})
