@@ -11,6 +11,6 @@ urlpatterns = [
     path('event/<int:event_id>/show', eventview.show, name='evnet_show'),
     path('event/<int:event_id>/edit', eventview.edit, name='evnet_edit'),
     path('event/update', eventview.update, name='evnet_update'),
-    path('gamescore/new', gamescoreview.new, name='gamescore_new'),
+    path('gamescore/<int:event_id>/new', gamescoreview.new, name='gamescore_new'),
     path('logout', logoutview.index, name='logout'),
 ]
