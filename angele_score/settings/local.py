@@ -45,38 +45,30 @@ LOGGING = {
             'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
-        },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
-            'filename': 'logs/debug.log',
-            'when': 'D',
-            'interval': 1,
-            'formatter': 'verbose',
-          },
+        }
     },
     'loggers': {
         'django': {
-            'handlers': ['console', "file"],
+            'handlers': ['console',],
             'propagate': True,
         },
         'django.request': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
             'propagate': False,
         },
         'django.server': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
             'propagate': False,
         },
         'django.db.backends': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
             'propagate': False,
         },
         'main': {
-            'handlers': ['console', "file"],
+            'handlers': ['console', ],
             'level': 'DEBUG',
         }
     }
