@@ -21,6 +21,7 @@ class GameScore(TimeStampedModel):
     class Meta:
         db_table = "game_scores"
 
+    @staticmethod
     def nextgame(user: User, event: Event):
         """
         次のゲームの用意

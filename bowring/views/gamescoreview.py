@@ -13,7 +13,7 @@ def new(request, event_id):
         return error.handler404(request)
 
     form = NewForm()
-    gamescore =GameScore.nextgame(user=request.user, event=event)
+    gamescore = GameScore.nextgame(user=request.user, event=event)
     form.gamescore = gamescore
 
     return render(request, 'gamescore/new.html', {"form": form})
