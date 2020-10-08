@@ -28,7 +28,7 @@ class GameScore(TimeStampedModel):
         """
         games = GameScore.objects.filter(event_id=event.id)
         if games:
-            count = len(games)
+            count = len(games) + 1
         else:
             count = 1
 

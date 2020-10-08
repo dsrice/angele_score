@@ -31,6 +31,34 @@
     <div class="col-sm-12">
         <h3>スコア情報</h3>
         <a href="{%  url "bowring:gamescore_new" form.event.id %}" class="btn btn-primary">ゲーム追加</a>
+
+        {% if form.games %}
+            <table class="table">
+                <tr>
+                    <th>
+                        ゲーム数
+                    </th>
+                    <th>
+                        スコア
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+                {% for game in form.games %}
+                    <tr>
+                        <th>
+                            {{ game.game_count }}
+                        </th>
+                        <td>
+                            {{ game.score }}
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-primary">編集</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
     </div>
 
 {% endblock %}
