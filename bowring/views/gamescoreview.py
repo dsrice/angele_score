@@ -24,6 +24,13 @@ def edit(request, event_id, game_count):
     if not event:
         return error.handler404(request)
 
+    gamescore = GameScore.check_score(event=event, game_count=game_count)
+    if not gamescore:
+        return error.handler404(request)
+
     form = NewForm()
+    form.gamescore = gamescore
+    form.fields["event_id"].initial = event.id
+    form.fields["gamecount"].initial = game_count
 
     return render(request, 'gamescore/edit.html', {"form": form})

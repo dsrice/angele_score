@@ -37,6 +37,16 @@ class GameScore(TimeStampedModel):
             user=user,
             game_count=count
         )
-        newgame.save()
+        newgame.save(user=user)
 
         return newgame
+
+    @staticmethod
+    def check_score(event: Event, game_count: int):
+        """
+        スコアの存在確認
+        """
+        if GameScore.objects.filter(event=event, game_count=game_count).exists():
+            return GameScore.objects.get(event=event, game_count=game_count)
+        else:
+            return None
