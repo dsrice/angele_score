@@ -12,3 +12,5 @@ class NewForm(forms.Form):
     gamescore = None
     event_id = forms.CharField()
     gamecount = forms.IntegerField()
+    framecount = forms.IntegerField()
+    throwcount = forms.IntegerField()
