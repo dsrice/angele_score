@@ -16,7 +16,6 @@ class GameScoreView(APIView):
 
             gamecount = request.GET.get("game_count")
             gamescore = GameScore.check_score(event=event, game_count=gamecount)
-            print(gamescore)
             if not gamescore:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
