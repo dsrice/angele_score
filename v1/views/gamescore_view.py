@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from bowring.models.events import Event
+from bowring.models import Event, GameScore, FrameScore
 
 
 class GameScoreView(APIView):
@@ -14,7 +14,17 @@ class GameScoreView(APIView):
             if not event:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
-            result = {}
+            gamecount = request.GET.get("game_count")
+            gamescore = GameScore.check_score(event=event, game_count=gamecount)
+            print(gamescore)
+            if not gamescore:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            result = {
+                "base_score": gamescore.base_score,
+                "score": gamescore.score,
+                "frames": []
+            }
             return Response(result)
 
         except Exception as e:
