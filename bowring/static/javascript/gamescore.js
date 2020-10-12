@@ -2,10 +2,20 @@
 対象ゲームのスコアを取得する
  */
 function get_score(){
+    token = $("#api-token").val()
+    event_id = $("#id_event_id").val()
+
+    base_url = "http://127.0.0.1:8000/v1/gamescore/"
     $.ajax({
-        url:"v1/gamescore",
-        type:"POST",
+        url: base_url,
+        type:"GET",
         dataType:"json",
+        headers:{
+            "Authorization": token
+        },
+        data: {
+            "event_id": event_id
+        }
     })
     .done((data) => {
       //成功した場合の処理
