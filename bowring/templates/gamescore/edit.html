@@ -4,6 +4,7 @@
 {% block content1 %}
 {% load widget_tweaks %}
     <script type="text/javascript" src="{% static 'javascript/gamescore.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/gamescore.css' %}">
     {{ form.event_id.as_hidden }}
     {{ form.gamecount.as_hidden }}
     {{ form.framecount.as_hidden }}

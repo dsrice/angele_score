@@ -1,0 +1,11 @@
+@keyframes flash {
+    50% {
+        opacity: 1;
+    }
+}
+.active_frame{
+    opacity: 0;
+    background: aqua;
+    animation: flash 1.5s infinite linear;
+}
+
