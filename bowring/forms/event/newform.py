@@ -9,7 +9,7 @@ class NewForm(forms.Form):
 
     name = forms.CharField()
     event_date = forms.DateField(widget=DateTimePickerInput(format="%Y-%m-%d"))
-    id = forms.IntegerField()
+    id = forms.IntegerField(required=False)
 
     def edit(self, event_id=None):
         super(NewForm, self).__init__()

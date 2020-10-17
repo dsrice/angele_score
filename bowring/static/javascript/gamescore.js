@@ -70,20 +70,23 @@ function update_frame(){
     let throw_count = $("#id_throwcount").val()
 
     base_url = "http://127.0.0.1:8000/v1/framescore/"
+
+    let request_data = JSON.stringify({
+            event_id: event_id,
+            game_count: game_count,
+            frame_count: frame_count,
+            throw_count: throw_count,
+            pins: pins
+    })
+    console.log(request_data)
     $.ajax({
         url: base_url,
         type:"POST",
-        dataType:"json",
+        contentType: 'application/json',
         headers:{
             "Authorization": token
         },
-        data: {
-            "event_id": event_id,
-            "game_count": game_count,
-            "frame_count": frame_count,
-            "throw_count": throw_count,
-            "pins": pins
-        }
+        data: request_data
     }).done((data) => {
       console.log(data.responseText);  //レスポンス文字列を表示
 

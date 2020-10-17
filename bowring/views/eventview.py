@@ -15,6 +15,7 @@ def new(request):
 def create(request):
     print(request.user)
     form = NewForm(request.POST)
+    print(form.errors)
     if form.is_valid():
         event = Event(
             name=form.data["name"],
@@ -22,7 +23,7 @@ def create(request):
             user=request.user
         )
 
-        event.save(request)
+        event.save(user=request.user)
 
         return redirect("bowring:home")
 
