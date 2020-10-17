@@ -13,9 +13,17 @@ class FrameScore(TimeStampedModel):
     result = models.ForeignKey(Result, on_delete=models.PROTECT)
     user = models.ForeignKey(User, on_delete=models.PROTECT)
     frame_count = models.IntegerField()
-    frame_type = models.IntegerField()
     frame_score = models.IntegerField()
 
     class Meta:
         db_table = "frame_scores"
 
+    @staticmethod
+    def check_score(game_score: GameScore, user: User, frame_count: int):
+        """
+        frame_scoreの存在確認
+        """
+        if FrameScore.objects.filter(gamesocre=game_score, user=user, frame_count=frame_count).exists():
+            return FrameScore.objects.get(gamesocre=game_score, user=user, frame_count=frame_count)
+        else:
+            return None

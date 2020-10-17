@@ -1,0 +1,23 @@
+@keyframes flash {
+    50% {
+        opacity: 1;
+    }
+}
+.active_frame{
+    opacity: 0;
+    background: aqua;
+    animation: flash 1.5s infinite linear;
+}
+
+.rest_1st{
+    background: cornflowerblue;
+    border: 1px solid cornflowerblue;
+
+}
+
+.rest_2nd{
+    background: red;
+    border: 1px solid red;
+}
+
+
