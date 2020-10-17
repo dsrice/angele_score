@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class TimeStampedModel(models.Model):
@@ -23,4 +24,5 @@ class TimeStampedModel(models.Model):
             if not self.created_at:
                 self.created_user_id = user.id
 
+        self.updated_at = timezone.now()
         super(TimeStampedModel, self).save(**kwargs)
