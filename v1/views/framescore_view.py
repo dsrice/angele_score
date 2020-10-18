@@ -7,6 +7,7 @@ from bowring.models.gamescores import GameScore
 from bowring.models.framescores import FrameScore
 from bowring.models.framepins import FramePin
 
+
 class FrameScoreView(APIView):
 
     def post(self, request, *args, **kwargs):
@@ -26,7 +27,8 @@ class FrameScoreView(APIView):
             if not gama_score:
                 return Response(status=status.HTTP_400_BAD_REQUEST)
 
-            frame_score = FrameScore.check_framescore(game_score=gama_score, user=user, frame_count=params.data["frame_count"])
+            frame_score = FrameScore.check_framescore(game_score=gama_score, user=user,
+                                                      frame_count=params.data["frame_count"])
             if not frame_score:
                 frame_score = FrameScore(
                     gamescore=gama_score,
@@ -36,7 +38,8 @@ class FrameScoreView(APIView):
                 )
                 frame_score.save(user)
 
-            frame_pin = FramePin.check_pin(game_score=gama_score, user=user, frame_score=frame_score, throw_count=params.data["throw_count"])
+            frame_pin = FramePin.check_pin(game_score=gama_score, user=user, frame_score=frame_score,
+                                           throw_count=params.data["throw_count"])
             if not frame_pin:
                 frame_pin = FramePin(
                     gamescore=gama_score,
@@ -56,18 +59,15 @@ class FrameScoreView(APIView):
                 )
                 frame_pin.save(user)
 
-            print(frame_pin)
             frame_pin = self.__update_pin(pins=params.data["pins"], frame_pin=frame_pin)
             frame_pin.save(user)
 
-
-            result = {}
+            result = self.__response_json(frame_pin)
             return Response(result)
 
         except Exception as e:
             print(e)
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
 
     def __update_pin(self, pins: list, frame_pin: FramePin):
         """
@@ -85,3 +85,34 @@ class FrameScoreView(APIView):
         frame_pin.pin10 = pins[9]
 
         return frame_pin
+
+    def __response_json(self, frame_pin: FramePin):
+        """
+        response用のjson作成処理
+        """
+        pins = []
+        pins.append(frame_pin.pin1)
+        pins.append(frame_pin.pin2)
+        pins.append(frame_pin.pin3)
+        pins.append(frame_pin.pin4)
+        pins.append(frame_pin.pin5)
+        pins.append(frame_pin.pin6)
+        pins.append(frame_pin.pin7)
+        pins.append(frame_pin.pin8)
+        pins.append(frame_pin.pin9)
+        pins.append(frame_pin.pin10)
+
+        all_flg = True
+        score = 10
+        for pin in pins:
+            if pin > 0:
+                all_flg = False
+                score -= 1
+
+        result = {
+            "pins": pins,
+            "score": score,
+            "all_flg": all_flg
+        }
+
+        return result
