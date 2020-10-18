@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{% static 'css/button.css' %}">
 <body>
     {% if request.user.is_authenticated %}
+        <input type="hidden" name="api-token" id="api-token" value="{{ request.session.token }}" >
+
         <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">スコア管理</a>
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">

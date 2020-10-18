@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from bowring.forms.event.newform import NewForm
 from bowring.forms.event.showform import ShowForm
 from bowring.models.events import Event
+from bowring.models.results import Result
 
 
 @login_required
@@ -15,6 +16,7 @@ def new(request):
 def create(request):
     print(request.user)
     form = NewForm(request.POST)
+    print(form.errors)
     if form.is_valid():
         event = Event(
             name=form.data["name"],
@@ -22,7 +24,16 @@ def create(request):
             user=request.user
         )
 
-        event.save(request)
+        event.save(user=request.user)
+        result = Result(
+            user=request.user,
+            event=event,
+            total_score=0,
+            base_score=0,
+            total_handicap=0
+        )
+        result.save(user=request.user)
+
 
         return redirect("bowring:home")
 

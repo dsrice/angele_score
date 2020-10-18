@@ -1,0 +1,57 @@
+@keyframes flash {
+    50% {
+        opacity: 1;
+    }
+}
+.active_frame{
+    opacity: 0;
+    background: aqua;
+    animation: flash 1.5s infinite linear;
+}
+
+.rest_1st{
+    background: cornflowerblue;
+    border: 1px solid cornflowerblue;
+
+}
+
+.rest_2nd{
+    background: red;
+    border: 1px solid red;
+}
+
+.score_setting{
+    height: 44px;
+}
+.strike{
+    position: relative;
+    padding-left: 13px;
+}
+
+.strike::before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border: solid 22px transparent;
+    border-left: solid 22px black;
+    border-right: solid 22px black;
+    top: 1%;
+    left: 0;
+}
+
+.spea{
+    position: relative;
+    padding-left: 13px;
+}
+
+.spea::before {
+    position: absolute;
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: solid 44px transparent;
+    border-right: solid 44px black;
+    top: 1%;
+    left: 0;
+}
