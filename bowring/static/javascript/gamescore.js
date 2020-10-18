@@ -88,13 +88,31 @@ function update_frame(){
         },
         data: request_data
     }).done((data) => {
-      console.log(data.responseText);  //レスポンス文字列を表示
+        write_score(data)
 
     })
     .fail((data) => {
       //失敗した場合の処理
       console.log(data.responseText);  //レスポンス文字列を表示
     })
+
+}
+
+function write_score(data){
+    frame_count = $("#id_framecount").val();
+    throw_count = $("#id_throwcount").val();
+    target_id = "score_" + frame_count + "_" + throw_count
+    if(data["all_flg"] == true){
+        $("[id=" + target_id + "]").text("")
+        if(throw_count == 1){
+            $("[id=" + target_id + "]").addClass("strike")
+        }else if (throw_count == 2){
+            $("[id=" + target_id + "]").addClass("spea")
+        }
+
+    }else{
+        $("[id=" + target_id + "]").text(data["score"])
+    }
 
 }
 
